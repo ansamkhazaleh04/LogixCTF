@@ -1,8 +1,8 @@
 LogixCTF: A Specialized Tool for Security Log Analysis
 
 LogixCTF is a dedicated command-line tool designed to analyze log files, detect suspicious activities, and provide critical hints to help security practitioners and CTF players understand complex security patterns.
-Quick Install & Run
 
+Quick Install & Run
 For users who wish to bypass the manual setup, you can now run LogixCTF directly without cloning the repository by using the following command:
 
 curl -s https://raw.githubusercontent.com/ansamkhazaleh04/LogixCTF/main/install.sh | bash
