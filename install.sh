@@ -19,11 +19,9 @@ echo "=============================="
 echo
 
 read -p "Do you want to run a demo on test.log? (y/n): " choice
-if [[ "$choice" == "y" || "$choice" == "Y" ]]; then
+if [ "$choice" = "y" ] || [ "$choice" = "Y" ]; then
     echo "Running LogixCTF demo..."
     python3 main.py test.log
-else
-    echo "Skipping demo."
 fi
 
 echo
