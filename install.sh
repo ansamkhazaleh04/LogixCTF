@@ -1,24 +1,25 @@
-#!/bin/bash
 
-# LogixCTF installer and runner
 
 echo "Installing LogixCTF..."
-
-# Create a temp folder
-TMP_DIR=$(mktemp -d)
-cd $TMP_DIR || exit
-
-# Download files from GitHub
-curl -sO https://raw.githubusercontent.com/ansamkhazaleh04/LogixCTF/main/main.py
-curl -sO https://raw.githubusercontent.com/ansamkhazaleh04/LogixCTF/main/analyzer.py
-curl -sO https://raw.githubusercontent.com/ansamkhazaleh04/LogixCTF/main/formatter.py
-curl -sO https://raw.githubusercontent.com/ansamkhazaleh04/LogixCTF/main/test.log
+git clone https://github.com/ansamkhazaleh04/LogixCTF.git temp_LogixCTF
+cd temp_LogixCTF || exit
 
 # Make main.py executable
 chmod +x main.py
 
-echo "LogixCTF files downloaded."
+echo
+echo "=============================="
+echo "   LogixCTF Installation Done   "
+echo "=============================="
+echo
 
-# Run the tool
-echo "Running LogixCTF..."
-python3 main.py test.log
+# Ask user if they want to run demo
+read -p "Do you want to run a demo on test.log? (y/n): " choice
+if [[ "$choice" == "y" || "$choice" == "Y" ]]; then
+    echo "Running LogixCTF demo..."
+    python3 main.py test.log
+fi
+
+echo
+echo "Done! You can now run LogixCTF on any log file with:"
+echo "python3 main.py <your_log_file>"
