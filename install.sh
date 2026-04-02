@@ -21,3 +21,5 @@ python3 main.py test.log
 echo
 echo "Done! You can now run LogixCTF on any log file with:"
 echo "python3 main.py <your_log_file>"
+
+# temporary change
