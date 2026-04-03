@@ -4,12 +4,22 @@ from formatter import info, warning, hint, section, success
 FAILED_THRESHOLD = 3
 
 def parse_line(line):
-    parts = line.split()
-    if len(parts) < 1:
+    if "LOGIN" not in line:
         return None
     
+    parts = line.split()
+    status = "FAILED" if "FAILED" in line else "SUCCESS"
+    user, ip = "unknown", "unknown"
+    for part in parts:
+        if part.startswith("user="):
+            user = part.split("=")[1]
+        elif part.startswith("ip="):
+            ip = part.split("=")[1]
+    
     return {
-        "ip": parts[0],
+        "ip": ip,
+        "user": user,
+        "status": status,
         "raw": line
     }
 
@@ -17,10 +27,9 @@ def analyze_failed_logins(lines):
     failed = defaultdict(int)
 
     for line in lines:
-        if "401" in line:
-            data = parse_line(line)
-            if data:
-                failed[data["ip"]] += 1
+        data = parse_line(line)
+        if data and data["status"] == "FAILED":
+            failed[data["ip"]] += 1
 
     return failed
 
